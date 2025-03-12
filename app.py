@@ -23,34 +23,74 @@ def generate_password(length, use_numbers, use_symbols):
     return password
 
 # Streamlit App Layout
-st.markdown("<h1 style='text-align: center; color: white;'>🔐 Password Generator Tool</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: white;'>🔐 Password Strength Meter</h1>", unsafe_allow_html=True)
 
-# CSS to customize the UI and footer
+# CSS to customize the UI and make it responsive
 st.markdown("""
     <style>
-        div[data-testid="stSidebar"] {background-color: #2c2c2c;}
-        h1 {background-color: #6c63ff; padding: 10px; border-radius: 10px;}
-        .stButton button {background-color: #6c63ff; color: white; border-radius: 10px;}
-        .stSlider {color: #6c63ff;}
-         footer {
-            position: fixed;
+        body {
+            font-family: Arial, sans-serif;
+        }
+        div[data-testid="stSidebar"] {
+            background-color: #2c2c2c;
+        }
+        h1 {
+            background-color: #6c63ff;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        .stButton button {
+            background-color: #6c63ff;
+            color: white;
+            border-radius: 10px;
+            padding: 8px 16px;
+            font-size: 1rem;
+        }
+        .stSlider {
+            color: #6c63ff;
+        }
+        footer {
             bottom: 0;
-            width: 45%;
+            width: 100%;
             background-color: #6c63ff;
             color: black;
             text-align: center;
             padding: 20px;
-            font-size: 18px;
+            font-size: 1rem;
             font-weight: bold;
-            box-shadow: 0 0 10px 0 rgba(0,0,0,0.1);
-            box-sizing: border-box;
-            border-top: 1px solid #2c2c2c;
             display: flex;
             justify-content: center;
             align-items: center;
             border-radius: 15px;
-            margin-bottom: 20px;
-
+            margin-top: 20px;
+        }
+        @media only screen and (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .stButton button {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            footer {
+                font-size: 0.9rem;
+                padding: 15px;
+            }
+        }
+        @media only screen and (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            .stButton button {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+            }
+            footer {
+                font-size: 0.8rem;
+                padding: 10px;
+            }
         }
     </style>
 """, unsafe_allow_html=True)
@@ -78,7 +118,7 @@ elif password_method == '✍️ Enter Password':
         strength = calculate_strength(entered_password)
         st.info(f'💡 Password Strength: {strength}')
 
-# Centered Footer with light pink background
+# Responsive centered footer
 st.markdown("""
     <footer>
         Made with ❤️ by Rahat Bano | 💻 Powered by Python & Streamlit
